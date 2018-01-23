@@ -56,7 +56,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
-        fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
         return rootView;
@@ -80,14 +80,26 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
     @Override
-    public void onResume() { super.onResume(); }
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         gMap = googleMap;
 
-
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        gMap.setMyLocationEnabled(true);
 
 
     }
