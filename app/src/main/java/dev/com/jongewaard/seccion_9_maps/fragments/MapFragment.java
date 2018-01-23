@@ -36,7 +36,7 @@ import java.util.Locale;
 import dev.com.jongewaard.seccion_9_maps.R;
 
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener, View.OnClickListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
 
     private View rootView;
     private MapView mapView; //este captura el Layout!
@@ -92,24 +92,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     public void onMapReady(GoogleMap googleMap) {
 
         gMap = googleMap;
-        LatLng place = new LatLng(37.3890924, -5.9844589);
 
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(12);
 
-        marker = new MarkerOptions();
-        marker.position(place);
-        marker.title("Mi marcador");
-        marker.draggable(true);
-        marker.snippet("Esto es una caja de texto donde modificar los datos");
-        marker.icon(BitmapDescriptorFactory.fromResource(android.R.drawable.star_on));
 
-        gMap.addMarker(marker);
-        gMap.moveCamera(CameraUpdateFactory.newLatLng(place));
-        gMap.animateCamera(zoom);
-
-        gMap.setOnMarkerDragListener(this);
-
-        geocoder = new Geocoder(getContext(), Locale.getDefault());
 
     }
 
@@ -158,49 +143,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 })
                 .setNegativeButton("CANCEL", null)
                 .show();
-    }
-
-
-    @Override
-    public void onMarkerDragStart(Marker marker) {
-        marker.hideInfoWindow();
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-        //cuenado termine de arrastrar, cuando lo suelte.
-
-        double latitude = marker.getPosition().latitude;
-        double longitude = marker.getPosition().longitude;
-
-        try {
-            addresses = geocoder.getFromLocation(latitude, longitude, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String address = addresses.get(0).getAddressLine(0);
-        String city = addresses.get(0).getLocality();           //Recoge la Ciudad
-        String state = addresses.get(0).getAdminArea();         //Recoge el Estado
-        String country = addresses.get(0).getCountryName();     //Recoge el País
-        String postalCode = addresses.get(0).getPostalCode();   //Recoge el código postal
-
-        marker.setSnippet(address);
-        marker.showInfoWindow();
-
-         /*
-            Toast.makeText(getContext(), "address: " + address + "\n" +
-                            "city: " + city + "\n" +
-                            "state: " + state + "\n" +
-                            "country: " + country + "\n" +
-                            "postalCode: " + postalCode
-                    , Toast.LENGTH_LONG).show();
-        */
     }
 
     /*Cuando se haga Click en el Boton fab.setOnClickListener. (el boton naranja o rosa*/
