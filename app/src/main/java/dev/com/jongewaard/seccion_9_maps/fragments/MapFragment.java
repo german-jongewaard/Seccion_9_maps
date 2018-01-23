@@ -42,11 +42,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private MapView mapView; //este captura el Layout!
     private GoogleMap gMap;
 
-    private Geocoder geocoder;
-    private List<Address> addresses;
-
-    private MarkerOptions marker;
-
     private FloatingActionButton fab;
 
 
@@ -62,7 +57,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
         fab = (FloatingActionButton)rootView.findViewById(R.id.fab);
-
         fab.setOnClickListener(this);
 
         return rootView;
@@ -99,19 +93,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
 
-    private void checkIfGPSIsEnable(){
+    private boolean isGPSIEnable(){
         try {
             int gpsSignal = Settings.Secure.getInt(getActivity().getContentResolver(), Settings.Secure.LOCATION_MODE);
 
             if(gpsSignal == 0){
                 //El GPS no esta activado
-                showInfoAlert();
+                return false;
             }else{
-                showInfoTienesAlert();
+                return true;
             }
 
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
