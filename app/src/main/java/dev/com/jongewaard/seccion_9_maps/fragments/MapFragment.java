@@ -142,5 +142,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
     /*Cuando se haga Click en el Boton fab.setOnClickListener. (el boton naranja o rosa*/
     @Override
-    public void onClick(View v) { this.checkIfGPSIsEnable(); }
+    public void onClick(View v) {
+
+        //si el GPS No esta habilitado
+        if(!this.isGPSIEnable())
+            showInfoAlert();
+    }
 }
