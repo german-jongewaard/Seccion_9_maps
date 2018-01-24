@@ -42,7 +42,7 @@ import dev.com.jongewaard.seccion_9_maps.R;
 import static android.content.Context.LOCATION_SERVICE;
 
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener, LocationListener {
 
     private View rootView;
     private MapView mapView; //este captura el Layout!
@@ -115,28 +115,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         gMap.getUiSettings().setMyLocationButtonEnabled(false);
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
-                location.getAltitude();
-            }
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.PROVIDERS_CHANGED_ACTION, 1000, 0, this);
 
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
 
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        });
 
 
 
@@ -197,5 +179,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         //si el GPS No esta habilitado
         if(!this.isGPSIEnable())
             showInfoAlert();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Toast.makeText(getContext(), "Changed!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }
