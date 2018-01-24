@@ -99,7 +99,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
         gMap.setMyLocationEnabled(true);
+
 
 
     }
