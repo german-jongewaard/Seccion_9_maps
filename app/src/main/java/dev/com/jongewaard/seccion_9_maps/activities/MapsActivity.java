@@ -88,11 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 "Lat: " + marker.getPosition().latitude + "\n" +
                                 "Lon: " + marker.getPosition().longitude
                         , Toast.LENGTH_SHORT).show();
-
             }
         });
-
-
-
     }
 }
