@@ -1,6 +1,5 @@
 package dev.com.jongewaard.seccion_9_maps.fragments;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,11 +8,7 @@ import android.view.ViewGroup;
 
 import dev.com.jongewaard.seccion_9_maps.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class WelcomeFragment extends Fragment {
-
 
     public WelcomeFragment() {
         // Required empty public constructor
@@ -26,5 +21,4 @@ public class WelcomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_welcome, container, false);
     }
-
 }
