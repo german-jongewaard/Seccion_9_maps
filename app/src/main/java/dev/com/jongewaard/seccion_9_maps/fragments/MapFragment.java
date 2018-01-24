@@ -2,11 +2,15 @@ package dev.com.jongewaard.seccion_9_maps.fragments;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -35,6 +39,8 @@ import java.util.Locale;
 
 import dev.com.jongewaard.seccion_9_maps.R;
 
+import static android.content.Context.LOCATION_SERVICE;
+
 
 public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
 
@@ -43,6 +49,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private GoogleMap gMap;
 
     private FloatingActionButton fab;
+
+    private LocationManager locationManager;
+    private Location currentLocation;
 
 
     public MapFragment() {
@@ -89,6 +98,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         gMap = googleMap;
 
+        locationManager = (LocationManager)getContext().getSystemService(LOCATION_SERVICE);
+
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -103,6 +114,29 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         gMap.setMyLocationEnabled(true);
 
         gMap.getUiSettings().setMyLocationButtonEnabled(false);
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+                location.getAltitude();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        });
 
 
 
