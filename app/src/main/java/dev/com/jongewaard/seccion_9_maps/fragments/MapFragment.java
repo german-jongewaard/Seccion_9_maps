@@ -101,6 +101,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         }
 
         gMap.setMyLocationEnabled(true);
+
+        gMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+
+
+
+                return false;
+            }
+        });
+
+
+
     }
 
 
