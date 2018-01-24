@@ -1,6 +1,5 @@
 package dev.com.jongewaard.seccion_9_maps.activities;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 import dev.com.jongewaard.seccion_9_maps.R;
 import dev.com.jongewaard.seccion_9_maps.fragments.WelcomeFragment;
 import dev.com.jongewaard.seccion_9_maps.fragments.MapFragment;
-
 
 public class MainActivity extends AppCompatActivity {
 
