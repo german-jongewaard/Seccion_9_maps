@@ -1,6 +1,5 @@
 package dev.com.jongewaard.seccion_9_maps.fragments;
 
-
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -41,7 +40,6 @@ import dev.com.jongewaard.seccion_9_maps.R;
 
 import static android.content.Context.LOCATION_SERVICE;
 
-
 public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener, LocationListener {
 
     private View rootView;
@@ -53,10 +51,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private LocationManager locationManager;
     private Location currentLocation;
 
-
-    public MapFragment() {
-
-    }
+    public MapFragment() { }
 
 
     @Override
@@ -70,7 +65,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         return rootView;
     }
-
 
     /*
     * Aquí es donde se crean las vistas. Es donde esta el fragmento cargado
@@ -116,10 +110,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
 
-
-
-
-
     }
 
 
@@ -138,7 +128,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             e.printStackTrace();
             return false;
         }
-
     }
 
     private void showInfoAlert() {
