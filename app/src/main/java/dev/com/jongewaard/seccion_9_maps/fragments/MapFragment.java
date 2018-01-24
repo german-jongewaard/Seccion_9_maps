@@ -111,10 +111,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
             return;
         }
 
-        gMap.setMyLocationEnabled(true);
-
-        gMap.getUiSettings().setMyLocationButtonEnabled(false);
-
+     /* gMap.setMyLocationEnabled(true);
+        gMap.getUiSettings().setMyLocationButtonEnabled(false); */
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
         locationManager.requestLocationUpdates(LocationManager.PROVIDERS_CHANGED_ACTION, 1000, 0, this);
 
@@ -183,7 +181,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
     @Override
     public void onLocationChanged(Location location) {
-        Toast.makeText(getContext(), "Changed!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Changed! -->" + location.getProvider(), Toast.LENGTH_LONG).show();
     }
 
     @Override
