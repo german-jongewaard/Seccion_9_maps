@@ -101,9 +101,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         }
 
         gMap.setMyLocationEnabled(true);
-
-
-
     }
 
 
