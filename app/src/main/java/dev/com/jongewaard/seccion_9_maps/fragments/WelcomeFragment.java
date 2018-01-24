@@ -21,4 +21,6 @@ public class WelcomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_welcome, container, false);
     }
+
+
 }
